@@ -28,8 +28,8 @@ clock = pg.time.Clock()
 class GameObject:
     """Создание родительского класса GameObject."""
 
-    def __init__(self, position=None, body_color=None):
-        self.position = CENTER_POSITION
+    def __init__(self, position=CENTER_POSITION, body_color=None):
+        self.position = position
         self.body_color = body_color
 
     def draw_objects(self,
@@ -38,7 +38,7 @@ class GameObject:
                      border_color=BORDER_COLOR
                      ):
         """Дочерний метод для отрисовки объектов."""
-        color_fill = fill_color if fill_color else self.body_color
+        color_fill = fill_color or self.body_color
         rect = pg.Rect(position, (GRID_SIZE, GRID_SIZE))
         pg.draw.rect(screen, color_fill, rect)
         pg.draw.rect(screen, border_color, rect, 1)
@@ -107,8 +107,6 @@ class Snake(GameObject):
         for position in self.positions:
             self.draw_objects(position)
 
-        self.draw_objects(self.positions[0])
-
         if self.last is not None:
             self.draw_objects(
                 self.last,
@@ -168,11 +166,10 @@ def main():
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position(snake.positions)
-        elif snake.get_head_position() in snake.positions[1:]:
+        elif snake.get_head_position() in snake.positions[4:]:
             snake.reset()
-
-        if apple.position in snake.positions:
-            apple.randomize_position(snake.positions)
+            if apple.position in snake.positions:
+                apple.randomize_position(snake.positions)
 
         snake.draw()
         apple.draw()
