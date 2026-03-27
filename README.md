@@ -1,4 +1,4 @@
-# the_snake
+<img width="1060" height="980" alt="image_1734440100" src="https://github.com/user-attachments/assets/bd85380e-579a-48b4-9cc1-a1ed862ced78" />
 
 Готов мой первый проект в @yandex.practicum! Это «Изгиб Питона» — классическая игра «Змейка».
 Этот проект — практическая реализация моих знаний и опыта.
